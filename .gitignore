@@ -1,0 +1,6 @@
+*.swp
+.idea/*
+target
+*/target/*
+target/*
+project/target/*

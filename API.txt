@@ -1,0 +1,13 @@
+API documentation
+
+1. HTTP(S):
+send a 'GET' to localhost:8080/?start=<ISO8601>&stop=<ISO8601>&format=<json|xml>
+and you'll get either a json blob of the form '{rate:|rate as integer or "unavailable"|}' or an xml blob of the form '<rate>|rate as an integer or "unavailable"|</rate>, where '|' is used as a delimiter in those form definitions.
+
+If you send non-ISO8601 compatible datetimes, you'll get back a 400 explaining what went wrong.
+
+If you send non-implemented formats, you'll get back a json response
+
+If you hit any other endpoint, you'll get back a 404 response
+
+2. Protobufs:

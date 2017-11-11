@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package RatesQueries;
+
+option java_package = "com.pricehero.rates";
+option java_outer_classname = "RatesQueries";
+
+message ISO8601RateQuery {
+  required string startEpochMillis;
+  required string endEpochMillis;
+}
+
+message RateResponse {
+  enum ResponseType {
+    UNAVAILABLE = 0;
+    PRESENT = 1;
+    APPLICATION_ERROR = 2;
+    USER_ERROR = 3;
+  };
+
+  optional ResponseType responseType = 1;
+  optional int32 rate = 2;
+  optional string appError = 3;
+  optional string userError = 4;
+}
+
