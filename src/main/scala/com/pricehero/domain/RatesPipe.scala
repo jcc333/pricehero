@@ -2,7 +2,7 @@ package com.pricehero.domain
 
 import com.pricehero.model.{RateQuery, RateResponse}
 import com.pricehero.rates.HasRatesService
-import com.pricehero.requests.ActionPipe
+import com.pricehero.serde.ActionPipe
 import com.twitter.util.Future
 
 /**
@@ -15,8 +15,8 @@ trait RatesPipe[In, Out] extends ActionPipe[RateQuery, RateResponse, In, Out] {
 
   override def translate(query: RateQuery): Future[RateResponse] = {
     ratesService.rateUntil(query.start).map {
-      case (rate, rangeEnd) =>
-        if (query.end.isBefore(rangeEnd)) {
+      case (rate, stop) =>
+        if (query.stop.isBefore(stop)) {
           RateResponse(Some(rate))
         } else {
           RateResponse(None)

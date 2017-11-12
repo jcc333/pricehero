@@ -23,7 +23,7 @@ trait RatesService {
   /**
     * Return the price at time dt, as well as start and end of the times at which that price is correct
     * @param dt the time we're checking on
-    * @return the rate, and the [start, end) range of the time-range for which that rate is continuously valid
+    * @return the rate, and the [start, stop) range of the time-range for which that rate is continuously valid
     */
   def rateUntil(dt: DateTime): Future[(Int, DateTime)] = {
     val dayOfTheWeek = dt.dayOfWeek.get
